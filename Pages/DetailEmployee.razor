@@ -1,0 +1,66 @@
+@page "/employeedetail/{id}"
+
+<h3 class="text-center" style="font-weight:bold;">DETAIL EMPLOYEE</h3>
+<br>
+
+@if (Employee == null || Employee.Department == null)
+{
+  <div class="spinner"></div>
+}
+else
+{
+  @* Card Employee *@
+  <div class="card">
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        @if (@Employee.Gender == 0)
+        {
+          <img src="images/nion.jpg" class="img-fluid rounded-start" alt="..." @onmousemove="@Mouse_Move">
+          @* <img class="card-img-top imageThumbnail" src="images/nion.jpg" /> *@
+        }
+        else
+        {
+          <img src="images/mau.jpg" class="img-fluid rounded-start" alt="..." @onmousemove="@Mouse_Move">
+          @* <img class="card-img-top imageThumbnail" src="images/mau.jpg" /> *@
+        }
+        <br>
+        <div class="text-center">
+          <label for="">Coordinates : @Coordinates</label>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-header text-center" style="font-weight:bold;">@Employee.FirstName @Employee.LastName</h5>
+          <br>
+          <label class="col-md-12">Employee ID : @Employee.EmployeeId</label>
+          <label class="col-md-12">Email : @Employee.Email</label>
+          <label class="col-md-12">Date Of Birth : @Employee.DateOfBirth</label>
+          <label class="col-md-12">Gender : @Employee.Gender</label>
+          <label class="col-md-12">Department : @Employee.Department.DepartmentName</label>
+          <button class="btn btn-primary" @onclick="@Button_Click">@ButtonText</button>
+        </div>
+        <div class="card-footer text-center @CssClass">
+          <a href="@($"employeedetail/{Employee.EmployeeId}")" class="btn btn-info m-1" data-bs-toggle="tooltip"
+          data-bs-placement="top" title="Detail">
+            <span class="oi oi-eye" aria-hidden="true"> Detail</span>
+          </a>
+
+          <a href="employeepage" class="btn btn-success m-1" data-bs-toggle="tooltip" data-bs-placement="top"
+          title="Delete">
+            <span class="oi oi-trash" aria-hidden="true"> Delete</span>
+          </a>
+
+          <a href="@($"editemployee/{Employee.EmployeeId}")" class="btn btn-danger m-1" data-bs-toggle="tooltip" data-bs-placement="top"
+          title="Edit">
+            <span class="oi oi-cog" aria-hidden="true"> Edit</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  @* Card Employee *@
+}
+
+<br>
+<a href="employeepage" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back">Back</a>
